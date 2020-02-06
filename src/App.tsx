@@ -1,35 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import Navbar from "./components/Navbar";
-import TodoForm from "./components/TodoForm";
-import TodoList from "./components/TodoList";
-import { ITodo } from "./interfaces";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import TodosPage from "./pages/TodosPage";
+import AboutPage from "./pages/AboutPage";
 
 const App: React.FC = () => {
-  const [todos, setTodos] = useState<ITodo[]>([]);
-  const addHandler = (title: string): void => {
-    const newTodo: ITodo = {
-      title,
-      id: Date.now(),
-      completed: false
-    };
-    setTodos(prev => [newTodo, ...prev]);
-    console.log("------", title);
-  };
-
-  const toggleHandler = (id: number) => {};
-  const removeHandler = (id: number) => {};
   return (
-    <>
+    <BrowserRouter>
       <Navbar />
       <div className="container">
-        <TodoForm onAdd={addHandler} />
-        <TodoList
-          todos={todos}
-          onToggle={toggleHandler}
-          onRemove={removeHandler}
-        />
+        <Switch>
+          <Route path="/" component={TodosPage} exact />
+          <Route path="/about" component={AboutPage} />
+        </Switch>
       </div>
-    </>
+    </BrowserRouter>
   );
 };
 

@@ -1,15 +1,19 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 
 interface TodoFormProps {
   onAdd(title: string): void;
 }
 
+// comments - how to do the same with state and onChange handler
+
 const TodoForm: React.FC<TodoFormProps> = props => {
   //   const [title, setTitle] = useState<string>("");
-  const ref = useRef<HTMLInputElement>(null);
+
   //   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
   //     setTitle(event.target.value);
   //   };
+
+  const ref = useRef<HTMLInputElement>(null);
 
   const keyPressHandler = (event: React.KeyboardEvent) => {
     if (event.key === "Enter") {
